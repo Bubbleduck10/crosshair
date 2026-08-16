@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Crosshair — painting one target at a time</title>
+<meta name="description" content="A coin that points at exactly one other coin. Burn to move it. The target is derived from on-chain history, not from a database.">
+<meta property="og:title" content="The Crosshair">
+<meta property="og:description" content="Burn to move the crosshair. Whatever it points at, holders earn.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230a0b0c'/><circle cx='50' cy='50' r='26' fill='none' stroke='%23ff4136' stroke-width='6'/><path d='M50 6v22M50 72v22M6 50h22M72 50h22' stroke='%23ff4136' stroke-width='6'/></svg>">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="hud">
+  <div class="wrap hud-in">
+    <span class="brand">THE CROSSHAIR</span>
+    <span class="tk">$TARGET</span>
+    <span id="rpc-state" class="state">ACQUIRING…</span>
+  </div>
+</header>
+
+<section class="scope">
+  <div class="wrap">
+    <p class="eyebrow">PAINTING THE TARGET</p>
+    <h1 id="target-name">— no target painted —</h1>
+    <p id="target-mint" class="mint">the crosshair is unassigned</p>
+    <p id="held-for" class="held">awaiting the first designation</p>
+
+    <div class="cta">
+      <a id="buy" class="btn" target="_blank" rel="noopener">ACQUIRE $TARGET ›</a>
+      <a href="#designate" class="btn ghost">MOVE THE CROSSHAIR ›</a>
+      <a href="#how" class="btn ghost">HOW IT WORKS ›</a>
+    </div>
+  </div>
+</section>
+
+<main class="wrap">
+
+  <section class="panel">
+    <h2>ORDNANCE <span class="note">every burn is permanent</span></h2>
+    <div class="grid">
+      <div class="cell"><div class="k">ROUNDS EXPENDED</div><div class="v" id="s-burned">—</div><div class="n">$TARGET destroyed, all time</div></div>
+      <div class="cell"><div class="k">SUPPLY DESTROYED</div><div class="v" id="s-pct">—</div><div class="n">of total supply, never returning</div></div>
+      <div class="cell"><div class="k">TARGETS PAINTED</div><div class="v" id="s-switches">—</div><div class="n">accepted designations</div></div>
+      <div class="cell"><div class="k">COST TO MOVE IT</div><div class="v red" id="s-cost">300,000</div><div class="n">single transaction, no accumulation</div></div>
+    </div>
+  </section>
+
+  <section class="panel" id="designate">
+    <h2>DESIGNATE A TARGET</h2>
+    <p class="lede">Burn <strong id="d-amount">300,000</strong> $TARGET in one transaction and name any
+    mint. The crosshair moves the instant the transaction confirms — there is no vote, no quorum, and
+    no running total across wallets. One qualifying burn, one target.</p>
+
+    <div class="designator">
+      <label class="lab" for="candidate">CANDIDATE MINT</label>
+      <input id="candidate" type="text" spellcheck="false" autocomplete="off"
+             placeholder="paste the mint address you want the crosshair on">
+      <div class="drow">
+        <button id="fire" class="btn">BURN &amp; PAINT ›</button>
+        <span id="fire-state" class="firestate">wallet not connected</span>
+      </div>
+      <p class="cool" id="cooldown">—</p>
+    </div>
+
+    <p class="fine">Burned tokens are destroyed permanently and are never refunded. Targets are chosen
+    by whoever burns; they are not vetted, endorsed, or checked by The Crosshair. Nothing here is a
+    promise about the price or quality of anything you point this at.</p>
+  </section>
+
+  <section class="panel" id="how">
+    <h2>HOW IT WORKS</h2>
+    <ol class="steps">
+      <li><span class="num">1</span><div><strong>Hold the ordnance.</strong> You need <span class="amt" id="h-amount">300,000</span> $TARGET in your wallet.</div></li>
+      <li><span class="num">2</span><div><strong>Name a mint.</strong> Any SPL token. The address is written into the burn transaction itself, as a memo.</div></li>
+      <li><span class="num">3</span><div><strong>Burn it.</strong> One transaction destroys the tokens and declares the target atomically. Nothing can burn without naming a target, and nothing can name a target without burning.</div></li>
+      <li><span class="num">4</span><div><strong>The crosshair moves.</strong> Then a <span class="amt">2 minute</span> cooldown, until someone takes it from you.</div></li>
+    </ol>
+
+    <div class="claim">
+      <h3>THE TARGET IS NOT STORED ANYWHERE</h3>
+      <p>Most projects like this keep the current state in a database and ask you to trust it. We do
+      not have one. The target is <em>derived</em>: it is the memo of the most recent qualifying burn,
+      computed from on-chain history by your own browser every time this page loads.</p>
+      <p>If this website disappeared tonight, the entire game — the current target, the archive, the
+      leaderboard — would still be reconstructible by anyone with an RPC endpoint. That is the
+      difference between a claim and a receipt.</p>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>HOLDER DISTRIBUTIONS</h2>
+    <p class="lede">A share of trading fees is collected, swapped into <strong id="dist-asset">the
+    current target</strong>, and paid pro-rata to wallets holding at least
+    <strong id="dist-min">200,000</strong> $TARGET. Whatever the crosshair points at is what holders
+    receive.</p>
+    <div class="grid">
+      <div class="cell"><div class="k">DISTRIBUTED</div><div class="v" id="p-paid">—</div><div class="n">to holders, all time</div></div>
+      <div class="cell"><div class="k">PENDING</div><div class="v" id="p-pending">—</div><div class="n">awaiting next distribution</div></div>
+      <div class="cell"><div class="k">PAYOUTS</div><div class="v" id="p-count">—</div><div class="n">transfers executed</div></div>
+      <div class="cell"><div class="k">SPLIT</div><div class="v" id="p-split">80 / 20</div><div class="n">holders / operations</div></div>
+    </div>
+    <p class="fine" id="dist-note">Distribution receipts publish their transaction signatures, so every
+    payout can be checked the same way the burns can. Distributions depend on trading fee income; when
+    there are no fees, there is nothing to distribute, and nothing is guaranteed.</p>
+  </section>
+
+  <section class="panel">
+    <h2>TARGET ARCHIVE <span class="note">every mint this has ever pointed at</span></h2>
+    <div id="archive" class="archive"><p class="empty">no designations yet — the crosshair has never moved</p></div>
+  </section>
+
+  <section class="panel">
+    <h2>TOP DESIGNATORS <span class="note">who paid to aim it</span></h2>
+    <div id="board" class="board"><p class="empty">no one has burned yet</p></div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="fine"><strong>The Crosshair is a meme coin and none of this is financial advice.</strong>
+    Burning is irreversible. Targets are named by whoever burns and are not vetted by us. Distributions
+    depend on fee income and are not guaranteed.</p>
+    <p class="fine">$TARGET · <a id="x" href="#" target="_blank" rel="noopener">on X</a> ·
+    <span id="mint-line">mint not yet announced</span></p>
+  </div>
+</footer>
+
+<script src="config.js?v=1"></script>
+<script src="chain.js?v=1"></script>
+<script src="app.js?v=1"></script>
+</body>
+</html>
