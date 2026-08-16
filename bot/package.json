@@ -1,0 +1,15 @@
+{
+  "name": "crosshair-distribute",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Swaps the holder share into the current target and pays it out pro-rata.",
+  "scripts": {
+    "dry": "node distribute.mjs",
+    "execute": "node distribute.mjs --execute"
+  },
+  "dependencies": {
+    "@solana/spl-token": "^0.4.8",
+    "@solana/web3.js": "^1.95.3"
+  }
+}
