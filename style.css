@@ -94,6 +94,15 @@ a { color: var(--red); }
 .claim p { color: #b8bfc6; font-size: 0.95rem; margin-bottom: 12px; }
 .claim em { color: var(--txt); font-style: normal; border-bottom: 1px dotted var(--dim); }
 
+/* operations wallet */
+.opswallet { margin-top: 20px; background: var(--panel); border: 1px solid var(--line);
+  border-left: 3px solid var(--green); padding: 18px 20px; }
+.opswallet .k { display: block; font-family: var(--mono); font-size: 0.67rem;
+  letter-spacing: 0.14em; color: var(--dim); margin-bottom: 8px; }
+.opswallet a { font-family: var(--mono); font-size: 0.84rem; color: var(--green);
+  word-break: break-all; text-decoration: none; border-bottom: 1px dotted var(--green); }
+.opswallet .n { display: block; margin-top: 10px; font-size: 0.76rem; color: var(--dim); }
+
 /* archive + board */
 .archive, .board { display: grid; gap: 10px; }
 .row { display: flex; align-items: baseline; gap: 16px; background: var(--panel); border: 1px solid var(--line);

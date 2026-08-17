@@ -23,6 +23,11 @@
   $("dist-min").textContent = CONFIG.minHold.toLocaleString();
   $("p-split").textContent = `${CONFIG.feeSplit.holders} / ${CONFIG.feeSplit.operator}`;
   $("x").href = CONFIG.twitterUrl;
+  if (CONFIG.operatorWallet) {
+    const ops = $("ops-wallet");
+    ops.textContent = CONFIG.operatorWallet;
+    ops.href = "https://solscan.io/account/" + CONFIG.operatorWallet;
+  }
   $("buy").href = CONFIG.mint ? "https://pump.fun/coin/" + CONFIG.mint : CONFIG.twitterUrl;
   if (!CONFIG.mint) $("buy").textContent = "FOLLOW THE LAUNCH ›";
   $("mint-line").textContent = CONFIG.mint ? "mint " + CONFIG.mint : "mint not yet announced";
