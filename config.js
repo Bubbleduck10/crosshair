@@ -34,7 +34,7 @@ const CONFIG = {
   // browser key is public by definition.
   rpcUrl: "https://api.mainnet-beta.solana.com",
 
-  twitterUrl: "https://x.com/yourhandle",
-  loreUrl: "https://x.com/yourhandle",
+  twitterUrl: "https://x.com/crosshairsol",
+  loreUrl: "https://x.com/crosshairsol/status/2089230599978647699",
   pollMs: 30000,
 };
