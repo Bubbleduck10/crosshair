@@ -7,7 +7,7 @@ const CONFIG = {
   chain: "solana",
 
   // Our mint. Paste at launch; empty = pre-launch mode.
-  mint: "",
+  mint: "88nLusMXp5UWN3af2T3QmYpKz93ueLPRodrUGPDSpump",
 
   // Tokens burned in a single transaction to move the crosshair.
   burnAmount: 300000,
@@ -32,7 +32,7 @@ const CONFIG = {
   // requests, so the read path cannot work without a keyed provider.
   // Use Helius/QuickNode/Triton and restrict the key to this domain, since a
   // browser key is public by definition.
-  rpcUrl: "https://api.mainnet-beta.solana.com",
+  rpcUrl: "https://solana-rpc.publicnode.com",
 
   twitterUrl: "https://x.com/crosshairsol",
   loreUrl: "https://x.com/crosshairsol/status/2089230599978647699",
